@@ -325,11 +325,11 @@ export default function Terminal({ t, lang }) {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 font-mono">
+    <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 font-mono">
       {!terminalOpen && (
         <button
           onClick={() => setTerminalOpen(true)}
-          className="bg-[#0a0818]/90 border border-noct-purple hover:border-noct-neon text-noct-neon px-5 py-3 rounded-full shadow-2xl transition-all text-xs flex items-center gap-2"
+          className="bg-[#0a0818]/90 border border-noct-purple hover:border-noct-neon text-noct-neon px-4 sm:px-5 py-2.5 sm:py-3 rounded-full shadow-2xl transition-all text-[10px] sm:text-xs flex items-center gap-2"
         >
           <span className="w-2 h-2 rounded-full bg-noct-neon animate-pulse" />
           <span>noctulabs_shell.sh</span>
@@ -337,11 +337,11 @@ export default function Terminal({ t, lang }) {
       )}
 
       {terminalOpen && (
-        <div className="bg-[#060413]/95 border-2 border-noct-purple rounded-xl shadow-2xl overflow-hidden flex flex-col"
-          style={{ width: gameMode ? 'auto' : undefined }}
+        <div
           className={`bg-[#060413]/95 border-2 border-noct-purple rounded-xl shadow-2xl overflow-hidden flex flex-col ${
-            gameMode ? '' : 'w-80 sm:w-96'
+            gameMode ? '' : 'w-72 max-sm:w-[calc(100vw-2rem)] sm:w-96'
           }`}
+          style={{ width: gameMode ? 'auto' : undefined }}
         >
           <div className="bg-[#0a0818] px-4 py-2 flex items-center justify-between border-b border-noct-border">
             <div className="flex items-center gap-1.5">

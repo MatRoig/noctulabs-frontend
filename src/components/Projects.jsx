@@ -42,8 +42,8 @@ export default function Projects({ t, lang }) {
 
   return (
     // scroll-mt-32 aplicado aquí para el salto correcto al hacer clic en el Navbar
-    <section id="proyectos" className="scroll-mt-32 relative z-10 px-6 py-20 max-w-7xl mx-auto border-t border-noct-border text-center overflow-hidden">
-      <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-wide mb-12 uppercase">{t.projects.title}</h2>
+    <section id="proyectos" className="scroll-mt-32 relative z-10 px-4 sm:px-6 py-16 sm:py-20 max-w-7xl mx-auto border-t border-noct-border text-center overflow-hidden">
+      <h2 className="font-syne text-2xl max-sm:text-xl sm:text-4xl font-extrabold tracking-tighter mb-8 sm:mb-12 uppercase">{t.projects.title}</h2>
 
       <div className="relative group px-1 md:px-14">
         
@@ -71,7 +71,7 @@ export default function Projects({ t, lang }) {
               ) : (
                 <div className={`group/card bg-[#0a0818] border border-noct-border ${p.borderClass} rounded-xl overflow-hidden transition-all text-left`}>
                     <div className={`${p.bgClass} h-48 flex items-center justify-center border-b border-noct-border p-6`}>
-                        <h4 className={`font-display text-2xl font-bold ${p.textClass} uppercase text-center`}>{p.name}</h4>
+                        <h4 className={`font-syne text-2xl font-bold ${p.textClass} uppercase text-center`}>{p.name}</h4>
                     </div>
                     <div className="p-5 flex justify-between items-center bg-[#0a0818]">
                         <div><h4 className="font-bold text-sm uppercase">{p.name}</h4><p className="text-xs text-gray-500">{p.type}</p></div>

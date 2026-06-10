@@ -6,14 +6,14 @@ export default function ContactForm({ t }) {
 
     return (
         // scroll-mt-32 asegura la alineación correcta al navegar desde el Navbar
-        <section id="contacto" className="scroll-mt-32 relative z-10 px-6 py-20 max-w-5xl mx-auto border-t border-noct-border">
-            <div className="bg-[#0a0818] border border-noct-border rounded-2xl p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-12 overflow-hidden shadow-2xl">
+        <section id="contacto" className="scroll-mt-32 relative z-10 px-4 sm:px-6 py-16 sm:py-20 max-w-5xl mx-auto border-t border-noct-border">
+            <div className="bg-[#0a0818] border border-noct-border rounded-2xl p-6 sm:p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 overflow-hidden shadow-2xl">
                 
                 <div className="flex flex-col justify-center h-full">
-                    <h3 className="font-syne text-4xl sm:text-5xl font-bold uppercase mb-4 leading-[1.1]">
+                    <h3 className="font-syne text-3xl max-sm:text-2xl sm:text-5xl font-extrabold uppercase mb-4 leading-[1.1] tracking-tighter">
                         {t.contact.title} <br />
                         {/* Animación de letras con movimiento constante */}
-                        <div className="flex flex-wrap overflow-hidden py-2">
+                        <div className="flex flex-nowrap py-2">
                             {titleText.map((letter, i) => (
                                 <motion.span
                                     key={i}
