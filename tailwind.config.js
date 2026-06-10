@@ -6,6 +6,13 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        // Ahora puedes usar 'font-syne' y 'font-space' en cualquier parte
+        editorial: ['Fraunces', 'serif'],
+        code: ['JetBrains Mono', 'monospace'],
+        syne: ['Syne', 'sans-serif'],
+        space: ['Space Grotesk', 'sans-serif'],
+        },
       colors: {
         'noct-bg': '#060413',
         'noct-card': '#0c0926',
