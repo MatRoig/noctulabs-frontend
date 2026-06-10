@@ -6,23 +6,21 @@ export default {
   ],
   theme: {
     extend: {
+      // Bloque único de fontFamily fusionado
       fontFamily: {
-        // Ahora puedes usar 'font-syne' y 'font-space' en cualquier parte
         editorial: ['Fraunces', 'serif'],
         code: ['JetBrains Mono', 'monospace'],
         syne: ['Syne', 'sans-serif'],
         space: ['Space Grotesk', 'sans-serif'],
-        },
+        sans: ['Inter', 'sans-serif'],
+        display: ['Oswald', 'sans-serif'],
+      },
       colors: {
         'noct-bg': '#060413',
         'noct-card': '#0c0926',
         'noct-border': '#1b1440',
         'noct-purple': '#7b2cbf',
         'noct-neon': '#9d4edd',
-      },
-      fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        display: ['Oswald', 'sans-serif'],
       },
       animation: {
         'gradient-x': 'gradient-x 3s ease infinite',

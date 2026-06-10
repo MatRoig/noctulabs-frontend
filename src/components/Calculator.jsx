@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function Calculator({ t }) {
     const [projectType, setProjectType] = useState('vitrina');
@@ -6,7 +6,6 @@ export default function Calculator({ t }) {
     const [includeAuth, setIncludeAuth] = useState(false);
 
     const calculateEstimate = () => {
-        // Si es "otro", devolvemos "A evaluar" sin sumar semanas
         if (projectType === 'otro') return 'A evaluar';
 
         let baseWeeks = 2;
@@ -23,7 +22,8 @@ export default function Calculator({ t }) {
     const isCustom = estimateResult === 'A evaluar';
 
     return (
-        <section id="calculadora" className="relative z-10 px-6 py-20 max-w-4xl mx-auto border-t border-noct-border text-center">
+        // scroll-mt-32 asegura que al navegar desde el Navbar no quede oculto
+        <section id="calculadora" className="scroll-mt-32 relative z-10 px-6 py-20 max-w-4xl mx-auto border-t border-noct-border text-center">
             <p className="text-noct-neon text-xs font-bold tracking-widest uppercase mb-2">{t.calc.mini}</p>
             <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-wide mb-4 uppercase">{t.calc.title}</h2>
             <p className="text-gray-400 text-sm mb-12 max-w-lg mx-auto">{t.calc.sub}</p>
@@ -35,7 +35,7 @@ export default function Calculator({ t }) {
                         <select 
                             value={projectType} 
                             onChange={(e) => setProjectType(e.target.value)} 
-                            className="w-full bg-[#060413] border border-noct-border rounded p-3 text-sm focus:border-noct-purple transition-colors"
+                            className="w-full bg-[#060413] border border-noct-border rounded p-3 text-sm focus:border-noct-purple outline-none transition-colors"
                         >
                             <option value="vitrina">{t.calc.opt1}</option>
                             <option value="ecommerce">{t.calc.opt2}</option>
@@ -77,7 +77,9 @@ export default function Calculator({ t }) {
                             />
                         </div>
                         <p className="text-xs text-gray-500 leading-relaxed">{t.calc.footer}</p>
-                        <a href="#contacto" className="block bg-noct-purple hover:bg-purple-600 text-white font-bold py-3 px-4 rounded text-xs uppercase transition-all glow-purple">{t.calc.btn}</a>
+                        <a href="#contacto" className="block bg-noct-purple hover:bg-purple-600 text-white font-bold py-3 px-4 rounded text-xs uppercase transition-all shadow-[0_0_15px_rgba(123,44,191,0.3)]">
+                            {t.calc.btn}
+                        </a>
                     </div>
                 </div>
             </div>

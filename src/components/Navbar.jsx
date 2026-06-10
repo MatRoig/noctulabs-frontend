@@ -24,7 +24,8 @@ export default function Navbar({ t, lang, setLang }) {
                 <div className="hidden md:flex flex-1 justify-end items-center gap-6">
                     <ul className="flex gap-8 text-sm font-medium text-gray-300 whitespace-nowrap">
                         <li><a href="#calculadora" className="hover:text-noct-neon transition">{t.nav.calc}</a></li>
-                        <li><a href="#nosotros" className="hover:text-noct-neon transition">{t.nav.team}</a></li>
+                        {/* --- CORRECCIÓN AQUÍ: Cambiado t.nav.team por t.nav.about --- */}
+                        <li><a href="#nosotros" className="hover:text-noct-neon transition">{t.nav.about}</a></li>
                         <li><a href="#contacto" className="hover:text-noct-neon transition">{t.nav.contact}</a></li>
                     </ul>
 
