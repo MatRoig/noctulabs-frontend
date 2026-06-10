@@ -45,7 +45,7 @@ const translations = {
         teamTitle: '// El Equipo de Ingeniería', 
         connect: 'Conectar' 
     },
-    contact: { title: '¿Tienes un', title2: 'proyecto', title3: 'en mente?', sub: 'Cuéntanos tu idea y te ayudaremos a hacerla realidad. Diseñamos soluciones seguras con alta capacidad backend.', name: 'Tu nombre', email: 'Tu correo electrónico', company: 'Nombre de tu empresa (opcional)', msg: 'Cuéntanos sobre tu proyecto...', btn: 'Enviar Mensaje' },
+    contact: { title: '¿Tienes un', title2: 'proyecto', title3: 'en mente?', sub: 'Cuéntanos tu idea y te ayudaremos a hacerla realidad. Diseñamos soluciones seguras con alta capacidad backend.', name: 'Tu nombre', email: 'Tu correo electrónico', company: 'Nombre de tu empresa (opcional)', social: 'Link a tu RRSS (opcional)', msg: 'Cuéntanos sobre tu proyecto...', btn: 'Enviar Mensaje', sending: 'Enviando mensaje...', sent: '¡Mensaje enviado con éxito! Te responderemos pronto.', error: 'Error al enviar. Intenta de nuevo.' },
     terminal: { welcome: 'NOCTULABS_OS v2.6.0 - INICIALIZADO CON ÉXITO', help_msg: 'Escribe "help" para ver los comandos disponibles.', help: 'Comandos disponibles:', t_desc: 'Muestra las especialidades del equipo', p_desc: 'Diagnóstico de latencia de servidores', c_desc: 'Limpiar consola', s_desc: 'Desencriptar transmisión del sistema', unknown: 'No se reconoce el comando. Escribe "help".', secret: '🦉 MENSAJE DESENCRIPTADO: "Mientras el resto del mundo duerme, nosotros construimos el futuro digital."' }
   },
   en: {
@@ -92,7 +92,7 @@ const translations = {
         teamTitle: '// Engineering Team', 
         connect: 'Connect' 
     },
-    contact: { title: 'Have a', title2: 'project', title3: 'in mind?', sub: 'Tell us your idea and we will help you make it a reality. We design secure solutions with high backend capacity.', name: 'Your name', email: 'Your email', company: 'Company name (optional)', msg: 'Tell us about your project...', btn: 'Send Message' },
+    contact: { title: 'Have a', title2: 'project', title3: 'in mind?', sub: 'Tell us your idea and we will help you make it a reality. We design secure solutions with high backend capacity.', name: 'Your name', email: 'Your email', company: 'Company name (optional)', social: 'Social media link (optional)', msg: 'Tell us about your project...', btn: 'Send Message', sending: 'Sending message...', sent: 'Message sent successfully! We will get back to you soon.', error: 'Error sending. Please try again.' },
     terminal: { welcome: 'NOCTULABS_OS v2.6.0 - INITIALIZED SUCCESSFULLY', help_msg: 'Type "help" to list available terminal commands.', help: 'Available commands:', t_desc: 'Show team specializations', p_desc: 'Server latency diagnostic', c_desc: 'Clear console', s_desc: 'Decrypt system transmission', unknown: 'Command not recognized. Type "help".', secret: '🦉 MESSAGE DECRYPTED: "While the rest of the world sleeps, we build the digital future."' }
   }
 };
