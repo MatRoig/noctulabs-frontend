@@ -23,9 +23,9 @@ export default function Calculator({ t }) {
 
     return (
         // scroll-mt-32 asegura que al navegar desde el Navbar no quede oculto
-        <section id="calculadora" className="scroll-mt-32 relative z-10 px-6 py-20 max-w-4xl mx-auto border-t border-noct-border text-center">
+        <section id="calculadora" className="scroll-mt-32 relative z-10 px-4 sm:px-6 py-16 sm:py-20 max-w-4xl mx-auto border-t border-noct-border text-center">
             <p className="text-noct-neon text-xs font-bold tracking-widest uppercase mb-2">{t.calc.mini}</p>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-wide mb-4 uppercase">{t.calc.title}</h2>
+            <h2 className="font-syne text-2xl max-sm:text-xl sm:text-4xl font-extrabold tracking-tighter mb-4 uppercase">{t.calc.title}</h2>
             <p className="text-gray-400 text-sm mb-12 max-w-lg mx-auto">{t.calc.sub}</p>
             
             <div className="border-2 border-noct-border rounded-2xl p-6 sm:p-10 text-left grid grid-cols-1 md:grid-cols-2 gap-8 shadow-2xl bg-[#0a0818] hover:border-noct-purple transition-colors">
@@ -63,7 +63,7 @@ export default function Calculator({ t }) {
                         <span className="text-noct-neon text-xs font-mono block mb-4 uppercase">{t.calc.dev}</span>
                         <p className="text-gray-400 text-sm">{t.calc.est}</p>
                         
-                        <h4 className={`my-4 font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-300 ${isCustom ? 'text-3xl sm:text-4xl' : 'text-6xl sm:text-7xl'}`}>
+                        <h4 className={`my-4 font-syne font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-300 ${isCustom ? 'text-3xl sm:text-4xl' : 'text-6xl sm:text-7xl'}`}>
                             {estimateResult}
                             {!isCustom && <span className="text-xl font-sans text-noct-neon ml-2">{t.calc.weeks}</span>}
                         </h4>

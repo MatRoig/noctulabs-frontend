@@ -2,7 +2,7 @@ export default function Footer ({ lang }) {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="relative z-10 border-t border-noct-border bg-[#060413] px-6 py-8 mt-10 text-sm text-gray-500">
+        <footer className="relative z-10 border-t border-noct-border bg-[#060413] px-4 sm:px-6 py-8 mt-10 text-xs sm:text-sm text-gray-500">
             <div className="max-w-7xl mx-auto flex flex-col items-center gap-6">
                 
                 {/* Logo centrado */}

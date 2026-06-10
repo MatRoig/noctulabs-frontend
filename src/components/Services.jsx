@@ -23,14 +23,14 @@ export default function Services({ t }) {
 
     return (
         // scroll-mt-32 corrige el salto del Navbar
-        <section id="servicios" className="scroll-mt-32 relative z-10 px-6 py-24 max-w-7xl mx-auto border-t border-noct-border/30">
+        <section id="servicios" className="scroll-mt-32 relative z-10 px-4 sm:px-6 py-16 sm:py-24 max-w-7xl mx-auto border-t border-noct-border/30">
             
             {/* =========================================
                 ZONA 1: SERVICIOS PRINCIPALES
             ========================================= */}
             <div className="mb-16 text-center">
                 <p className="font-space text-noct-neon text-xs font-bold tracking-[0.2em] uppercase mb-4">{t.services.mini}</p>
-                <h2 className="font-syne text-4xl sm:text-6xl font-bold uppercase tracking-tight text-white">{t.services.title}</h2>
+                <h2 className="font-syne text-3xl max-sm:text-2xl sm:text-6xl font-extrabold uppercase tracking-tighter text-white">{t.services.title}</h2>
             </div>
 
             {/* Grid Interactivo */}
@@ -51,7 +51,7 @@ export default function Services({ t }) {
                         
                         <div className="relative z-10">
                             <div className="text-4xl mb-6">{s.icon}</div>
-                            <h3 className="font-syne font-bold text-xl mb-4 uppercase text-white tracking-wide">{s.title}</h3>
+                            <h3 className="font-syne font-extrabold text-xl mb-4 uppercase text-white tracking-tighter">{s.title}</h3>
                             <p className="font-space text-sm text-gray-400 leading-relaxed">{s.desc}</p>
                         </div>
 
@@ -67,7 +67,7 @@ export default function Services({ t }) {
                 ZONA 2: FLUJO DE TRABAJO
             ========================================= */}
             <div className="text-center mb-16 max-w-2xl mx-auto">
-                <h3 className="font-syne text-3xl sm:text-4xl font-bold tracking-tight text-white uppercase mb-4">
+                <h3 className="font-syne text-3xl sm:text-4xl font-extrabold tracking-tighter text-white uppercase mb-4">
                     {t.services.flowTitle}
                 </h3>
                 <p className="font-space text-gray-400 text-sm sm:text-base leading-relaxed">

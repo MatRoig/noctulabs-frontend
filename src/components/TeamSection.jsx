@@ -12,15 +12,15 @@ export default function TeamSection({ t }) {
 
     return (
         // scroll-mt-32 aplicado para corregir el salto del Navbar
-        <section id="nosotros" className="scroll-mt-32 relative z-10 px-6 py-24 max-w-7xl mx-auto border-t border-noct-border">
+        <section id="nosotros" className="scroll-mt-32 relative z-10 px-4 sm:px-6 py-16 sm:py-24 max-w-7xl mx-auto border-t border-noct-border">
             
             {/* =========================================
                 ZONA 1: INTRODUCCIÓN (Nuestra Historia)
             ========================================= */}
-            <div className="text-center max-w-3xl mx-auto mb-20">
+            <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
                 <p className="text-noct-neon text-sm font-bold tracking-widest uppercase mb-4">{t.about.mini}</p>
-                <h2 className="font-display text-4xl sm:text-5xl font-bold mb-8 uppercase tracking-wide">{t.about.title}</h2>
-                <p className="text-gray-400 text-lg leading-relaxed">
+                <h2 className="font-syne text-3xl max-sm:text-2xl sm:text-5xl font-extrabold mb-6 sm:mb-8 uppercase tracking-tighter">{t.about.title}</h2>
+                <p className="text-gray-400 text-sm sm:text-lg leading-relaxed">
                     {t.about.p1} <strong className="text-white font-bold">Generation Chile</strong>, {t.about.p2} <strong className="text-white font-bold">"My favorite Rug"</strong>, {t.about.p3} <strong className="text-noct-neon font-bold">Noctulabs - Digital Solution</strong>, {t.about.p4}
                 </p>
             </div>
@@ -36,7 +36,7 @@ export default function TeamSection({ t }) {
                         <div className="p-3 bg-purple-950/30 rounded-xl border border-noct-purple/30 group-hover:border-noct-purple transition-colors">
                             <Target className="text-noct-purple group-hover:text-noct-neon transition-colors" size={28} />
                         </div>
-                        <h3 className="font-display text-2xl font-bold text-white uppercase tracking-wide">{t.about.missionTitle}</h3>
+                        <h3 className="font-syne text-2xl font-extrabold text-white uppercase tracking-tighter">{t.about.missionTitle}</h3>
                     </div>
                     <p className="text-gray-400 text-base leading-relaxed">
                         {t.about.missionDesc}
@@ -50,7 +50,7 @@ export default function TeamSection({ t }) {
                         <div className="p-3 bg-cyan-950/30 rounded-xl border border-noct-neon/30 group-hover:border-noct-neon transition-colors">
                             <Lightbulb className="text-noct-neon group-hover:text-white transition-colors" size={28} />
                         </div>
-                        <h3 className="font-display text-2xl font-bold text-white uppercase tracking-wide">{t.about.visionTitle}</h3>
+                        <h3 className="font-syne text-2xl font-extrabold text-white uppercase tracking-tighter">{t.about.visionTitle}</h3>
                     </div>
                     <p className="text-gray-400 text-base leading-relaxed">
                         {t.about.visionDesc}
@@ -65,12 +65,12 @@ export default function TeamSection({ t }) {
                 ZONA 3: EQUIPO
             ========================================= */}
             <div className="text-center mb-12">
-                <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-widest text-white uppercase">{t.about.teamTitle}</h3>
+                <h3 className="font-syne text-2xl sm:text-3xl font-extrabold tracking-tighter text-white uppercase">{t.about.teamTitle}</h3>
             </div>
             
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 text-left max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-5 text-left max-w-6xl mx-auto">
                 {teamMembers.map((member, i) => (
-                    <a key={i} href={member.linkedin} target="_blank" rel="noopener noreferrer" className="group bg-[#0a0818] border border-noct-border hover:border-noct-purple rounded-xl p-4 transition-all hover:-translate-y-2 hover:shadow-[0_5px_20px_rgba(157,78,221,0.15)] flex flex-col h-full">
+                    <a key={i} href={member.linkedin} target="_blank" rel="noopener noreferrer" className="group bg-[#0a0818] border border-noct-border hover:border-noct-purple rounded-xl p-3 sm:p-4 transition-all hover:-translate-y-2 hover:shadow-[0_5px_20px_rgba(157,78,221,0.15)] flex flex-col h-full">
                         <div className="w-full aspect-square bg-purple-950/10 border border-noct-border/50 rounded-lg overflow-hidden mb-4 flex items-center justify-center relative">
                             <img src={member.img} alt={member.name} className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-300 group-hover:scale-105" onError={(e) => e.target.style.display='none'} />
                         </div>
