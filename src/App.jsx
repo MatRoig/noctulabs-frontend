@@ -43,10 +43,8 @@ function App() {
         </div>
       )}
 
-      {/* NAVBAR: Se mantiene arriba del contenido */}
       <Navbar t={t} lang={lang} setLang={setLang} />
 
-      {/* CONTENIDO PRINCIPAL */}
       <main className="relative z-10 w-full">
         <Hero t={t} />
         <Services t={t} />
@@ -57,7 +55,6 @@ function App() {
         <Footer lang={lang} />
       </main>
 
-      {/* TERMINAL   FLOTANTE */}
       <Terminal t={t} lang={lang} />
     </div>
   );
