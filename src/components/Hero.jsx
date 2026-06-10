@@ -2,9 +2,10 @@ import { motion } from "framer-motion";
 
 export default function Hero({ t }) {
   return (
-    <header id="inicio" className="relative px-6 py-16 md:py-24 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center min-h-[80vh]">
+    <header id="inicio" className="relative px-6 py-16 md:py-24 max-w-7xl mx-auto flex flex-col lg:flex-row items-center min-h-[80vh] gap-8">
         
-        <div className="relative z-10 max-w-xl">
+        {/* LADO IZQUIERDO: Texto (Se mantiene igual) */}
+        <div className="relative z-20 w-full lg:max-w-xl">
             <motion.h1 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -39,28 +40,40 @@ export default function Hero({ t }) {
             </motion.div>
         </div>
 
-        {/* Imagen con Fusión (Vignetting) */}
+        {/* --- VERSIÓN ESCRITORIO (LG+) --- */}
+        {/* Recuperamos tu código ORIGINAL exacto para la imagen flotante */}
         <motion.div 
             animate={{ y: [0, -15, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute right-0 top-16 lg:top-25 bottom-0 w-full lg:w-[105%] z-0 pointer-events-none opacity-50 lg:opacity-100"
+            className="hidden lg:block absolute right-0 top-16 lg:top-25 bottom-0 w-[105%] z-0 pointer-events-none opacity-100"
         >
             <div className="relative w-full h-full">
-                
-                {/* 1. Gradiente izquierdo extendido y más denso */}
-                {/* He cambiado w-48 por w-2/3 y añadido un 'via' para mayor opacidad */}
+                {/* Tus gradientes densos originales */}
                 <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-[#060413] via-[#060413]/80 to-transparent z-10" />
-                
-                {/* 2. Gradiente inferior */}
                 <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#060413] to-transparent z-10" />
                 
                 <img 
                     src="/buho-hero.png.jpeg" 
-                    alt="Búho" 
+                    alt="Búho Escritorio" 
                     className="object-contain w-full h-full object-right-bottom drop-shadow-2xl" 
                 />
             </div>
         </motion.div>
+
+        {/* --- VERSIÓN MÓVIL (HASTA LG) --- */}
+        {/* Esta versión solo se muestra en celulares y tablets */}
+        <div className="flex lg:hidden w-full h-[300px] mt-8 relative z-10 justify-center">
+            <div className="relative w-full max-w-sm h-full rounded-full overflow-hidden flex items-center justify-center">
+                {/* Un degradado radial sutil para mobile */}
+                <div className="absolute inset-0 bg-gradient-radial from-noct-purple/30 to-transparent z-0 opacity-70" />
+                
+                <img 
+                    src="/buho-hero.png.jpeg" 
+                    alt="Búho Móvil" 
+                    className="object-contain h-full w-auto object-center drop-shadow-2xl relative z-10" 
+                />
+            </div>
+        </div>
     </header>
   );
 }

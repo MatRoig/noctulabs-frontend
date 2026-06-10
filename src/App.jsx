@@ -12,14 +12,8 @@ import TeamSection from './components/TeamSection';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 
-
 function App() {
-  // --- ESTADO DE IDIOMA ---
-
-    const { t, lang, setLang } = useTranslation();
-
-  // --- ESTADO DE LA CORTINA CINEMATOGRÁFICA ---
-
+  const { t, lang, setLang } = useTranslation();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -29,62 +23,42 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  // --- CANVAS DE PARTÍCULAS INTERACTIVAS ---
-
   return (
-    <div className="min-h-screen bg-noct-bg text-white font-sans selection:bg-noct-neon selection:text-black overflow-x-hidden relative">
+    <div className="min-h-screen bg-noct-bg text-white font-sans selection:bg-noct-neon selection:text-black relative">
       <ParticlesBackground />
 
-      {/* CORTINA */}
-      <div className={`fixed inset-0 z-[9999] pointer-events-none flex flex-col ${loading ? '' : 'invisible'}`}>
-        <div className="w-full h-1/2 bg-[#060413] curtain-panel flex items-end justify-center overflow-hidden" style={{ transform: loading ? 'translateY(0)' : 'translateY(-100%)' }}>
-          <div className="h-0 flex items-center justify-center relative bottom-0">
-            <img src="/logo-noctulabs.png.jpeg" alt="Logo" className={`h-32 sm:h-48 max-w-none object-contain origin-center ${loading ? 'animate-owl-drop' : ''}`} style={{ transform: 'translateY(50%)' }} />
+      {/* CORTINA - Corregimos el manejo de visibilidad para no bloquear el clic */}
+      {loading && (
+        <div className="fixed inset-0 z-[9999] flex flex-col transition-opacity duration-500">
+          <div className="w-full h-1/2 bg-[#060413] flex items-end justify-center overflow-hidden transition-transform duration-700 ease-in-out" style={{ transform: loading ? 'translateY(0)' : 'translateY(-100%)' }}>
+            <div className="h-0 flex items-center justify-center relative bottom-0">
+              <img src="/logo-noctulabs.png.jpeg" alt="Logo" className="h-32 sm:h-48 animate-owl-drop" style={{ transform: 'translateY(50%)' }} />
+            </div>
+          </div>
+          <div className="w-full h-1/2 bg-[#060413] flex items-start justify-center overflow-hidden transition-transform duration-700 ease-in-out" style={{ transform: loading ? 'translateY(0)' : 'translateY(100%)' }}>
+            <div className="h-0 flex items-center justify-center relative top-0">
+              <img src="/logo-noctulabs.png.jpeg" alt="Logo" className="h-32 sm:h-48 animate-owl-drop" style={{ transform: 'translateY(-50%)' }} />
+            </div>
           </div>
         </div>
-        <div className="w-full h-1/2 bg-[#060413] curtain-panel flex items-start justify-center overflow-hidden" style={{ transform: loading ? 'translateY(0)' : 'translateY(100%)' }}>
-          <div className="h-0 flex items-center justify-center relative top-0">
-            <img src="/logo-noctulabs.png.jpeg" alt="Logo" className={`h-32 sm:h-48 max-w-none object-contain origin-center ${loading ? 'animate-owl-drop' : ''}`} style={{ transform: 'translateY(-50%)' }} />
-          </div>
-        </div>
-      </div>
+      )}
 
-      {/* NAVBAR */}
-
+      {/* NAVBAR: Se mantiene arriba del contenido */}
       <Navbar t={t} lang={lang} setLang={setLang} />
 
-      {/* HERO */}
-
-      <Hero t={t} />
-
-      {/* SERVICIOS */}
-
-      <Services t={t} />
-
-      {/* PROYECTOS */}
-
-      <Projects t={t} lang={lang} />
-
-      {/* CALCULADORA */}
-
-      <Calculator t={t} />
-
-      {/* HISTORIA & EQUIPO */}
-
-      <TeamSection t={t} />
-
-      {/* CONTACTO */}
-
-      <ContactForm t={t} />
-
-      {/* FOOTER */}
-
-      <Footer lang={lang} />
+      {/* CONTENIDO PRINCIPAL */}
+      <main className="relative z-10 w-full">
+        <Hero t={t} />
+        <Services t={t} />
+        <Projects t={t} lang={lang} />
+        <Calculator t={t} />
+        <TeamSection t={t} />
+        <ContactForm t={t} />
+        <Footer lang={lang} />
+      </main>
 
       {/* TERMINAL FLOTANTE */}
-
       <Terminal t={t} lang={lang} />
-
     </div>
   );
 }
