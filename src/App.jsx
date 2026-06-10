@@ -57,7 +57,7 @@ function App() {
         <Footer lang={lang} />
       </main>
 
-      {/* TERMINAL FLOTANTE */}
+      {/* TERMINAL   FLOTANTE */}
       <Terminal t={t} lang={lang} />
     </div>
   );
