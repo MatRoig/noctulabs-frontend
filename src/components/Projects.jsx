@@ -53,9 +53,11 @@ export default function Projects({ t, lang }) {
           spaceBetween={24}
           slidesPerView={1}
           loop={true}
+          speed={500}
+          watchOverflow={false}
           onSwiper={(swiper) => setSwiperInstance(swiper)}
           breakpoints={{ 768: { slidesPerView: 3 } }}
-          className="pb-10 !overflow-visible"
+          className="pb-10"
         >
           {projects.map((p) => (
             <SwiperSlide key={p.id}>
@@ -85,14 +87,22 @@ export default function Projects({ t, lang }) {
         </Swiper>
 
         <button 
-          onClick={() => swiperInstance?.slidePrev()}
+          onClick={() => {
+            if (!swiperInstance) return;
+            const prev = swiperInstance.realIndex - 1;
+            swiperInstance.slideToLoop(prev < 0 ? projects.length - 1 : prev, 500);
+          }}
           className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-[#0a0818] border border-noct-border rounded-full flex items-center justify-center text-gray-500 hover:border-noct-purple hover:text-noct-purple transition-all shadow-xl cursor-pointer"
         >
           <ChevronLeft size={20} />
         </button>
         
         <button 
-          onClick={() => swiperInstance?.slideNext()}
+          onClick={() => {
+            if (!swiperInstance) return;
+            const next = swiperInstance.realIndex + 1;
+            swiperInstance.slideToLoop(next >= projects.length ? 0 : next, 500);
+          }}
           className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-[#0a0818] border border-noct-border rounded-full flex items-center justify-center text-gray-500 hover:border-noct-purple hover:text-noct-purple transition-all shadow-xl cursor-pointer"
         >
           <ChevronRight size={20} />
