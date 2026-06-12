@@ -69,10 +69,10 @@ export default function TeamSection({ t }) {
             </div>
             
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-5 text-left max-w-6xl mx-auto">
-                {teamMembers.map((member, i) => (
-                    <a key={i} href={member.linkedin} target="_blank" rel="noopener noreferrer" className="group bg-[#0a0818] border border-noct-border hover:border-noct-purple rounded-xl p-3 sm:p-4 transition-all hover:-translate-y-2 hover:shadow-[0_5px_20px_rgba(157,78,221,0.15)] flex flex-col h-full">
+                {teamMembers.map((member) => (
+                    <a key={member.name} href={member.linkedin} target="_blank" rel="noopener noreferrer" className="group bg-[#0a0818] border border-noct-border hover:border-noct-purple rounded-xl p-3 sm:p-4 transition-all hover:-translate-y-2 hover:shadow-[0_5px_20px_rgba(157,78,221,0.15)] flex flex-col h-full">
                         <div className="w-full aspect-square bg-purple-950/10 border border-noct-border/50 rounded-lg overflow-hidden mb-4 flex items-center justify-center relative">
-                            <img src={member.img} alt={member.name} className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-300 group-hover:scale-105" onError={(e) => e.target.style.display='none'} />
+                            <img src={member.img} alt={member.name} loading="lazy" className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-300 group-hover:scale-105" onError={(e) => e.target.style.display='none'} />
                         </div>
                         <div className="flex-grow">
                             <h4 className="font-bold text-sm uppercase text-white truncate group-hover:text-noct-neon transition-colors">{member.name}</h4>

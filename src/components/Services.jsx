@@ -7,18 +7,17 @@ export default function Services({ t }) {
 
     // Array de servicios principales
     const services = [
-        { icon: '💻', title: t.services.s1, desc: t.services.s1_d },
-        { icon: '🛒', title: t.services.s2, desc: t.services.s2_d },
-        { icon: '🚀', title: t.services.s3, desc: t.services.s3_d },
-        { icon: '⚡', title: t.services.s4, desc: t.services.s4_d }
+        { id: 'web-sites', icon: '💻', title: t.services.s1, desc: t.services.s1_d },
+        { id: 'online-stores', icon: '🛒', title: t.services.s2, desc: t.services.s2_d },
+        { id: 'web-apps', icon: '🚀', title: t.services.s3, desc: t.services.s3_d },
+        { id: 'landing-pages', icon: '⚡', title: t.services.s4, desc: t.services.s4_d }
     ];
 
-    // Array para el flujo paso a paso
     const workflowSteps = [
-        { title: t.services.step1, desc: t.services.step1_d, border: 'hover:border-purple-500/50' },
-        { title: t.services.step2, desc: t.services.step2_d, border: 'hover:border-noct-neon/50' },
-        { title: t.services.step3, desc: t.services.step3_d, border: 'hover:border-purple-500/50' },
-        { title: t.services.step4, desc: t.services.step4_d, border: 'hover:border-noct-neon/50' },
+        { id: 'step-1', title: t.services.step1, desc: t.services.step1_d, border: 'hover:border-purple-500/50' },
+        { id: 'step-2', title: t.services.step2, desc: t.services.step2_d, border: 'hover:border-noct-neon/50' },
+        { id: 'step-3', title: t.services.step3, desc: t.services.step3_d, border: 'hover:border-purple-500/50' },
+        { id: 'step-4', title: t.services.step4, desc: t.services.step4_d, border: 'hover:border-noct-neon/50' },
     ];
 
     return (
@@ -37,7 +36,7 @@ export default function Services({ t }) {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-24">
                 {services.map((s, i) => (
                     <motion.div 
-                        key={i}
+                        key={s.id}
                         onMouseEnter={() => setActive(i)}
                         onMouseLeave={() => setActive(null)}
                         animate={{ 
@@ -78,7 +77,7 @@ export default function Services({ t }) {
             {/* Grilla responsiva del proceso de trabajo */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative max-w-6xl mx-auto">
                 {workflowSteps.map((step, i) => (
-                    <div key={i} className="relative group flex flex-col h-full">
+                    <div key={step.id} className="relative group flex flex-col h-full">
                         
                         <div className={`bg-[#0a0818]/60 backdrop-blur-sm border border-noct-border/70 ${step.border} p-6 sm:p-8 rounded-xl flex-grow transition-all duration-500 hover:-translate-y-2 flex flex-col`}>
                             <span className="font-syne text-xl font-extrabold text-noct-neon tracking-wider block mb-4 uppercase">

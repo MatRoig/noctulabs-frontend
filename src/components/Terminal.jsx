@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import SnakeGame from './SnakeGame';
 
+let logCounter = 0;
+
 export default function Terminal({ t }) {
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [terminalInput, setTerminalInput] = useState('');
@@ -9,10 +11,14 @@ export default function Terminal({ t }) {
   const logsEndRef = useRef(null);
   const inputRef = useRef(null);
 
+  const addLogs = useCallback((messages) => {
+    setCommandLogs(prev => [...prev, ...messages.map(msg => ({ id: ++logCounter, text: msg }))]);
+  }, []);
+
   const welcomeMsg = useMemo(() => [
-    t.terminal.welcome,
-    t.terminal.help_msg,
-    '------------------------------------------------',
+    { id: ++logCounter, text: t.terminal.welcome },
+    { id: ++logCounter, text: t.terminal.help_msg },
+    { id: ++logCounter, text: '------------------------------------------------' },
   ], [t.terminal.welcome, t.terminal.help_msg]);
 
   const terminalLogs = useMemo(() => [...welcomeMsg, ...commandLogs], [welcomeMsg, commandLogs]);
@@ -23,9 +29,9 @@ export default function Terminal({ t }) {
 
   const exitGame = useCallback(() => {
     setGameMode(false);
-    setCommandLogs(prev => [...prev, '>> Juego terminado. Bienvenido de vuelta.']);
+    addLogs(['>> Juego terminado. Bienvenido de vuelta.']);
     setTimeout(() => inputRef.current?.focus(), 50);
-  }, []);
+  }, [addLogs]);
 
   const executeCommand = (cmd) => {
     const cleanCmd = cmd.trim().toLowerCase();
@@ -46,7 +52,7 @@ export default function Terminal({ t }) {
       return;
     }
 
-    let response = [];
+    let response;
     if (cleanCmd === 'help') {
       response = [
         `> ${cmd}`, t.terminal.help,
@@ -71,7 +77,7 @@ export default function Terminal({ t }) {
     } else {
       response = [`> ${cmd}`, t.terminal.unknown];
     }
-    setCommandLogs(prev => [...prev, ...response]);
+    addLogs(response);
   };
 
   return (
@@ -111,14 +117,14 @@ export default function Terminal({ t }) {
           ) : (
             <>
               <div className="h-48 overflow-y-auto p-4 flex flex-col gap-1 text-[11px] text-gray-300">
-                {terminalLogs.map((log, i) => (
+                {terminalLogs.map((log) => (
                   <div
-                    key={i}
+                    key={log.id}
                     className={`whitespace-pre-wrap leading-tight ${
-                      log.startsWith('>') ? 'text-noct-neon' : log.includes('🦉') ? 'text-noct-neon font-bold' : ''
+                      log.text.startsWith('>') ? 'text-noct-neon' : log.text.includes('🦉') ? 'text-noct-neon font-bold' : ''
                     }`}
                   >
-                    {log}
+                    {log.text}
                   </div>
                 ))}
                 <div ref={logsEndRef} />
