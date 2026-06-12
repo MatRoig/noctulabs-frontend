@@ -53,5 +53,6 @@ src/
     ├── Footer.jsx            # Pie de página
     ├── Terminal.jsx          # Terminal interactiva
     ├── SnakeGame.jsx         # Juego Snake en Canvas
+    ├── PongGame.jsx          # Juego Pong en Canvas
     └── ParticlesBackground.jsx # Fondo de partículas
 ```

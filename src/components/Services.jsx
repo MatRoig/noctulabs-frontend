@@ -75,12 +75,12 @@ export default function Services({ t }) {
             </div>
 
             {/* Grilla responsiva del proceso de trabajo */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative max-w-6xl mx-auto">
                 {workflowSteps.map((step, i) => (
                     <div key={step.id} className="relative group flex flex-col h-full">
                         
                         <div className={`bg-[#0a0818]/60 backdrop-blur-sm border border-noct-border/70 ${step.border} p-6 sm:p-8 rounded-xl flex-grow transition-all duration-500 hover:-translate-y-2 flex flex-col`}>
-                            <span className="font-syne text-xl font-extrabold text-noct-neon tracking-wider block mb-4 uppercase">
+                            <span className="font-syne text-xs sm:text-sm lg:text-base font-extrabold text-noct-neon tracking-wider block mb-4 uppercase">
                                 {step.title}
                             </span>
                             <p className="font-space text-gray-400 text-xs sm:text-sm leading-relaxed flex-grow">

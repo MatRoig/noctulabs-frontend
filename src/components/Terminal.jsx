@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import SnakeGame from './SnakeGame';
+import PongGame from './PongGame';
 
 let logCounter = 0;
 
@@ -43,12 +44,12 @@ export default function Terminal({ t }) {
     }
 
     if (cleanCmd === 'snake') {
-      setGameMode(true);
+      setGameMode('snake');
       return;
     }
 
-    if (cleanCmd === 'exit') {
-      exitGame();
+    if (cleanCmd === 'pong') {
+      setGameMode('pong');
       return;
     }
 
@@ -60,7 +61,7 @@ export default function Terminal({ t }) {
         `  clear    - ${t.terminal.c_desc}`,
         `  secret   - ${t.terminal.s_desc}`,
         `  snake    - Iniciar juego Snake`,
-        `  exit     - Salir del juego`,
+        `  pong     - Iniciar juego Pong`,
       ];
     } else if (cleanCmd === 'team') {
       response = [
@@ -112,8 +113,10 @@ export default function Terminal({ t }) {
             >✕</button>
           </div>
 
-          {gameMode ? (
+          {gameMode === 'snake' ? (
             <SnakeGame onExit={exitGame} />
+          ) : gameMode === 'pong' ? (
+            <PongGame onExit={exitGame} />
           ) : (
             <>
               <div className="h-48 overflow-y-auto p-4 flex flex-col gap-1 text-[11px] text-gray-300">
