@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export default function Hero({ t }) {
   return (
-    <header id="inicio" className="scroll-mt-32 relative px-6 py-16 md:py-24 max-w-7xl mx-auto flex items-center h-[70vh]">
+    <header id="inicio" className="scroll-mt-32 relative px-8 py-16 md:py-24 max-w-7xl mx-auto flex items-center h-[70vh]">
         
         {/* BÚHO DE FONDO — misma capa para todos los tamaños */}
         <motion.div 
@@ -10,14 +10,14 @@ export default function Hero({ t }) {
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             className="absolute inset-0 overflow-hidden lg:inset-auto lg:right-0 lg:top-0 lg:bottom-0 lg:w-[105%] z-0 pointer-events-none"
         >
-            <div className="relative w-full h-full lg:top-12">
+            <div className="relative w-full h-full">
                 {/* Gradiente izquierdo: full en móvil, 2/3 en escritorio */}
                 <div className="absolute inset-y-0 left-0 w-1/3 sm:w-1/2 md:w-2/3 bg-gradient-to-r from-[#060413] via-[#060413]/90 to-transparent z-10" />
                 <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#060413] to-transparent z-10" />
                 <img 
                     src="/buho-hero.png.jpeg" 
                     alt="Búho" 
-                    className="object-cover w-full h-full object-right-top drop-shadow-2xl opacity-100" 
+                    className="object-cover md:object-contain w-full h-full object-right-top drop-shadow-2xl opacity-100" 
                 />
             </div>
         </motion.div>
@@ -28,7 +28,7 @@ export default function Hero({ t }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="font-syne text-2xl sm:text-4xl lg:text-6xl font-extrabold uppercase tracking-tighter leading-[0.9] mb-6"
+                className="font-syne text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tighter leading-[0.9] mb-6"
             >
                 {t.hero.title1} <br /> {t.hero.title2} <br />
                 {t.hero.title3}{" "}

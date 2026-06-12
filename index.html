@@ -2,6 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Noctulabs - Digital Solutions</title>
@@ -12,5 +13,11 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script nomodule>
+      document.querySelectorAll('link[rel*="icon"]').forEach(el => el.remove());
+      var l = document.createElement('link');
+      l.rel = 'icon'; l.type = 'image/svg+xml'; l.href = '/favicon.svg';
+      document.head.appendChild(l);
+    </script>
   </body>
 </html>
