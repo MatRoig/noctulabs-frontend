@@ -62,7 +62,7 @@ export default function Projects({ t, lang }) {
               {p.link ? (
                 <a href={p.link} target="_blank" rel="noopener noreferrer" className={`group/card bg-[#0a0818] border border-noct-border ${p.borderClass} rounded-xl overflow-hidden transition-all block text-left`}>
                   <div className={`h-48 border-b border-noct-border overflow-hidden ${p.bgClass}`}>
-                    <img src={p.img} alt={p.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover/card:scale-105" />
+                    <img src={p.img} alt={p.name} loading="lazy" className="w-full h-full object-cover object-top transition-transform duration-500 group-hover/card:scale-105" />
                   </div>
                   <div className="p-5 flex justify-between items-center">
                     <div><h4 className="font-bold text-sm uppercase">{p.name}</h4><p className="text-xs text-gray-500">{p.type}</p></div>

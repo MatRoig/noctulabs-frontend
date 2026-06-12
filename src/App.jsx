@@ -1,16 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import useTranslation from './hooks/useTranslation';
 import './index.css';
 import ParticlesBackground from './components/ParticlesBackground';
-import Terminal from './components/Terminal';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
-import Projects from './components/Projects';
-import Calculator from './components/Calculator';
-import TeamSection from './components/TeamSection';
-import ContactForm from './components/ContactForm';
-import Footer from './components/Footer';
+
+const Projects = lazy(() => import('./components/Projects'));
+const Calculator = lazy(() => import('./components/Calculator'));
+const TeamSection = lazy(() => import('./components/TeamSection'));
+const ContactForm = lazy(() => import('./components/ContactForm'));
+const Footer = lazy(() => import('./components/Footer'));
+const Terminal = lazy(() => import('./components/Terminal'));
 
 function App() {
   const { t, lang, setLang } = useTranslation();
@@ -18,13 +19,20 @@ function App() {
   const [curtainClosing, setCurtainClosing] = useState(false);
 
   useEffect(() => {
+    let removeTimer;
     const timer = setTimeout(() => {
       setCurtainClosing(true);
-      const removeTimer = setTimeout(() => setLoading(false), 700);
-      return () => clearTimeout(removeTimer);
+      removeTimer = setTimeout(() => setLoading(false), 700);
     }, 1200);
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(removeTimer);
+    };
   }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   return (
     <div className="min-h-screen bg-noct-bg text-white font-sans selection:bg-noct-neon selection:text-black relative">
@@ -50,17 +58,21 @@ function App() {
 
       {/* CONTENIDO PRINCIPAL */}
       <main className="relative z-10 w-full">
-        <Hero t={t} />
-        <Services t={t} />
-        <Projects t={t} lang={lang} />
-        <Calculator t={t} />
-        <TeamSection t={t} />
-        <ContactForm t={t} />
-        <Footer lang={lang} />
+        <Suspense fallback={null}>
+          <Hero t={t} />
+          <Services t={t} />
+          <Projects t={t} lang={lang} />
+          <Calculator t={t} />
+          <TeamSection t={t} />
+          <ContactForm t={t} />
+          <Footer lang={lang} />
+        </Suspense>
       </main>
 
       {/* TERMINAL   FLOTANTE */}
-      <Terminal t={t} />
+      <Suspense fallback={null}>
+        <Terminal t={t} />
+      </Suspense>
     </div>
   );
 }

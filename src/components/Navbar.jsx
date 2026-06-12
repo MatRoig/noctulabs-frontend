@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import LangToggle from './LangToggle';
 
 export default function Navbar({ t, lang, setLang }) {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -50,10 +51,7 @@ export default function Navbar({ t, lang, setLang }) {
                         <li><a href="#contacto" className="hover:text-noct-neon transition">{t.nav.contact}</a></li>
                     </ul>
 
-                    <div className="flex bg-[#0a0818] border border-noct-border rounded-lg p-1 text-[10px] font-bold shrink-0">
-                        <button onClick={() => setLang('es')} className={`px-2 py-1 rounded ${lang === 'es' ? 'bg-noct-purple text-white' : 'text-gray-500 hover:text-white'}`}>ES</button>
-                        <button onClick={() => setLang('en')} className={`px-2 py-1 rounded ${lang === 'en' ? 'bg-noct-purple text-white' : 'text-gray-500 hover:text-white'}`}>EN</button>
-                    </div>
+                    <LangToggle lang={lang} setLang={setLang} />
                 </div>
             </div>
 
@@ -71,10 +69,7 @@ export default function Navbar({ t, lang, setLang }) {
                                 {link.label}
                             </a>
                         ))}
-                        <div className="flex bg-[#0a0818] border border-noct-border rounded-lg p-1 text-[10px] font-bold mt-2">
-                            <button onClick={() => setLang('es')} className={`px-3 py-1.5 rounded ${lang === 'es' ? 'bg-noct-purple text-white' : 'text-gray-500 hover:text-white'}`}>ES</button>
-                            <button onClick={() => setLang('en')} className={`px-3 py-1.5 rounded ${lang === 'en' ? 'bg-noct-purple text-white' : 'text-gray-500 hover:text-white'}`}>EN</button>
-                        </div>
+                        <LangToggle lang={lang} setLang={setLang} />
                     </div>
                 </div>
             )}

@@ -22,6 +22,16 @@ export default function ContactForm({ t }) {
 
     async function handleSubmit(e) {
         e.preventDefault();
+
+        const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+        const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+        if (!serviceId || !templateId || !publicKey) {
+            setError(true);
+            return;
+        }
+
         setSending(true);
         setSent(false);
         setError(false);
@@ -78,7 +88,9 @@ export default function ContactForm({ t }) {
                 </div>
 
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                    <label htmlFor="name" className="sr-only">{t.contact.name}</label>
                     <input
+                        id="name"
                         type="text"
                         name="name"
                         value={formData.name}
@@ -87,7 +99,9 @@ export default function ContactForm({ t }) {
                         required
                         className="bg-[#060413] border border-noct-border rounded p-3 text-sm focus:border-noct-neon outline-none transition-all focus:ring-1 focus:ring-noct-neon"
                     />
+                    <label htmlFor="email" className="sr-only">{t.contact.email}</label>
                     <input
+                        id="email"
                         type="email"
                         name="email"
                         value={formData.email}
@@ -96,7 +110,9 @@ export default function ContactForm({ t }) {
                         required
                         className="bg-[#060413] border border-noct-border rounded p-3 text-sm focus:border-noct-neon outline-none transition-all focus:ring-1 focus:ring-noct-neon"
                     />
+                    <label htmlFor="company" className="sr-only">{t.contact.company}</label>
                     <input
+                        id="company"
                         type="text"
                         name="company"
                         value={formData.company}
@@ -104,7 +120,9 @@ export default function ContactForm({ t }) {
                         placeholder={t.contact.company}
                         className="bg-[#060413] border border-noct-border rounded p-3 text-sm focus:border-noct-neon outline-none transition-all focus:ring-1 focus:ring-noct-neon"
                     />
+                    <label htmlFor="social" className="sr-only">{t.contact.social}</label>
                     <input
+                        id="social"
                         type="text"
                         name="social"
                         value={formData.social}
@@ -112,7 +130,9 @@ export default function ContactForm({ t }) {
                         placeholder={t.contact.social}
                         className="bg-[#060413] border border-noct-border rounded p-3 text-sm focus:border-noct-neon outline-none transition-all focus:ring-1 focus:ring-noct-neon"
                     />
+                    <label htmlFor="message" className="sr-only">{t.contact.msg}</label>
                     <textarea
+                        id="message"
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
