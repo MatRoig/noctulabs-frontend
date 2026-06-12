@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+const STORAGE_KEY = 'noctulabs-lang';
+
 const translations = {
   es: {
     nav: { start: 'Inicio', services: 'Servicios', projects: 'Proyectos', calc: 'Calculadora', about: 'Nosotros', contact: 'Contacto', btn: 'Hablemos' },
@@ -17,11 +19,8 @@ const translations = {
         s4_d: 'Páginas que convierten visitantes en clientes y portafolios.',
         flowTitle: 'Nuestro Flujo de Trabajo',
         flowSub: 'Cómo transformamos la identidad de tu pyme en una solución digital única.',
-        
-        // --- CAMBIO AQUÍ: PASO 1 ACTUALIZADO ---
         step1: '01. Inmersión',
         step1_d: 'Coordinamos un encuentro cara a cara para aterrizar tus ideas, resolver dudas y absorber la verdadera esencia de tu pyme.',
-        
         step2: '02. Estrategia',
         step2_d: 'Definimos la estructura ideal (vitrina, catálogo, landing) adaptada 100% a tus objetivos, sin usar plantillas frías.',
         step3: '03. Desarrollo',
@@ -30,7 +29,7 @@ const translations = {
         step4_d: 'Lanzamos tu plataforma al mundo y nos aseguramos de que empiece a trabajar mientras duermes.'
     },
     projects: { title: 'Proyectos Destacados', btn: 'Ver más proyectos >' },
-    calc: { mini: 'Simulador Digital', title: 'Calcula tu Alcance en tiempo real', sub: 'Selecciona las especificaciones de tu idea y mira cómo nuestro algoritmo estima las semanas de desarrollo.', label1: '1. Tipo de Software Principal', opt1: 'Página Vitrina / Portafolio', opt2: 'E-Commerce con Catálogo Completo', opt3: 'Aplicación a Medida / Sistema Complejo', label2: '2. Módulos Adicionales Necesarios', check1: 'Integración de Pasarela de Pago', check1_sub: 'Transacciones e-commerce Webpay, Stripe o PayPal.', check2: 'Autenticación y Perfiles de Usuario', check2_sub: 'Logins de clientes seguros y Base de Datos protegida.', dev: '// Desarrollo Noctulabs', est: 'Tiempo Estimado de Entrega:', weeks: 'Semanas', footer: 'Código limpio, estructurado y optimizado.', btn: 'Cotizar este desarrollo ↗' },
+    calc: { mini: 'Simulador Digital', title: 'Calcula tu Alcance en tiempo real', sub: 'Selecciona las especificaciones de tu idea y mira cómo nuestro algoritmo estima las semanas de desarrollo.', label1: '1. Tipo de Software Principal', opt1: 'Página Vitrina / Portafolio', opt2: 'E-Commerce con Catálogo Completo', opt3: 'Aplicación a Medida / Sistema Complejo', opt4: 'Otro / A Evaluar', label2: '2. Módulos Adicionales Necesarios', check1: 'Integración de Pasarela de Pago', check1_sub: 'Transacciones e-commerce Webpay, Stripe o PayPal.', check2: 'Autenticación y Perfiles de Usuario', check2_sub: 'Logins de clientes seguros y Base de Datos protegida.', dev: '// Desarrollo Noctulabs', est: 'Tiempo Estimado de Entrega:', weeks: 'Semanas', footer: 'Código limpio, estructurado y optimizado.', btn: 'Cotizar este desarrollo ↗' },
     about: { 
         mini: 'Nuestra Historia', 
         title: 'NOCTULABS - DIGITAL SOLUTION', 
@@ -63,12 +62,9 @@ const translations = {
         s4: 'Landing Pages', 
         s4_d: 'Pages that convert visitors into customers and portfolios.',
         flowTitle: 'Our Workflow',
-        flowSub: 'How we transform your SME’s identity into a unique digital solution.',
-        
-        // --- CAMBIO AQUÍ: PASO 1 ACTUALIZADO EN INGLÉS ---
+        flowSub: 'How we transform your SME\'s identity into a unique digital solution.',
         step1: '01. Immersion',
         step1_d: 'We coordinate a face-to-face meeting to ground your ideas, clear doubts, and absorb the true essence of your business.',
-        
         step2: '02. Strategy',
         step2_d: 'We define the ideal structure (showcase, catalog, landing) tailored 100% to your goals, without cold templates.',
         step3: '03. Development',
@@ -77,7 +73,7 @@ const translations = {
         step4_d: 'We launch your platform to the world and make sure it starts working while you sleep.'
     },
     projects: { title: 'Featured Projects', btn: 'See more projects >' },
-    calc: { mini: 'Digital Simulator', title: 'Calculate your Scope in real-time', sub: 'Select your idea specifications and watch our algorithm estimate development weeks.', label1: '1. Main Software Type', opt1: 'Showcase Page / Portfolio', opt2: 'E-Commerce with Full Catalog', opt3: 'Custom App / Complex System', label2: '2. Additional Modules Needed', check1: 'Payment Gateway Integration', check1_sub: 'E-commerce transactions via Webpay, Stripe, or PayPal.', check2: 'Auth & User Profiles', check2_sub: 'Secure customer logins and protected Database.', dev: '// Noctulabs Development', est: 'Estimated Delivery Time:', weeks: 'Weeks', footer: 'Clean, structured, and optimized code.', btn: 'Quote this project ↗' },
+    calc: { mini: 'Digital Simulator', title: 'Calculate your Scope in real-time', sub: 'Select your idea specifications and watch our algorithm estimate development weeks.', label1: '1. Main Software Type', opt1: 'Showcase Page / Portfolio', opt2: 'E-Commerce with Full Catalog', opt3: 'Custom App / Complex System', opt4: 'Other / To Evaluate', label2: '2. Additional Modules Needed', check1: 'Payment Gateway Integration', check1_sub: 'E-commerce transactions via Webpay, Stripe, or PayPal.', check2: 'Auth & User Profiles', check2_sub: 'Secure customer logins and protected Database.', dev: '// Noctulabs Development', est: 'Estimated Delivery Time:', weeks: 'Weeks', footer: 'Clean, structured, and optimized code.', btn: 'Quote this project ↗' },
     about: { 
         mini: 'Our Story', 
         title: 'NOCTULABS - DIGITAL SOLUTION', 
@@ -98,7 +94,15 @@ const translations = {
 };
 
 export default function useTranslation() {
-  const [lang, setLang] = useState('es');
+  const [lang, setLang] = useState(() => {
+    return localStorage.getItem(STORAGE_KEY) || 'es';
+  });
+
+  const changeLang = (newLang) => {
+    localStorage.setItem(STORAGE_KEY, newLang);
+    setLang(newLang);
+  };
+
   const t = translations[lang];
-  return { t, lang, setLang };
+  return { t, lang, setLang: changeLang };
 }

@@ -11,6 +11,7 @@ export default function Projects({ t, lang }) {
   // Tus proyectos base
   const projects = [
     { 
+        id: 'my-favorite-rug',
         name: "My Favorite Rug", 
         type: "E-commerce / Tufting", 
         img: "/MFR.png", 
@@ -21,6 +22,7 @@ export default function Projects({ t, lang }) {
         arrowClass: "group-hover:text-purple-400"
     },
     { 
+        id: 'coming-soon-1',
         name: lang === 'es' ? 'Próximamente' : 'Coming Soon', 
         type: lang === 'es' ? 'Tienda Online' : 'Online Store', 
         borderClass: "hover:border-orange-500",
@@ -29,6 +31,7 @@ export default function Projects({ t, lang }) {
         arrowClass: "group-hover:text-orange-400"
     },
     { 
+        id: 'coming-soon-2',
         name: lang === 'es' ? 'Próximamente' : 'Coming Soon', 
         type: lang === 'es' ? 'Sitio Web Corporativo' : 'Corporate Website', 
         borderClass: "hover:border-blue-500",
@@ -37,8 +40,6 @@ export default function Projects({ t, lang }) {
         arrowClass: "group-hover:text-blue-400"
     },
   ];
-
-  const duplicatedProjects = [...projects, ...projects];
 
   return (
     // scroll-mt-32 aplicado aquí para el salto correcto al hacer clic en el Navbar
@@ -56,8 +57,8 @@ export default function Projects({ t, lang }) {
           breakpoints={{ 768: { slidesPerView: 3 } }}
           className="pb-10 !overflow-visible"
         >
-          {duplicatedProjects.map((p, i) => (
-            <SwiperSlide key={i}>
+          {projects.map((p) => (
+            <SwiperSlide key={p.id}>
               {p.link ? (
                 <a href={p.link} target="_blank" rel="noopener noreferrer" className={`group/card bg-[#0a0818] border border-noct-border ${p.borderClass} rounded-xl overflow-hidden transition-all block text-left`}>
                   <div className={`h-48 border-b border-noct-border overflow-hidden ${p.bgClass}`}>
