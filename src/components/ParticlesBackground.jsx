@@ -1,8 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function ParticlesBackground() {
+    const canvasRef = useRef(null);
+
     useEffect(() => {
-        const canvas = document.getElementById('noct-particles');
+        const canvas = canvasRef.current;
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
         let animationFrameId, width = (canvas.width = window.innerWidth), height = (canvas.height = window.innerHeight);
@@ -33,5 +35,5 @@ export default function ParticlesBackground() {
         return () => { window.removeEventListener('resize', handleResize); cancelAnimationFrame(animationFrameId); };
     }, []);
 
-    return <canvas id="noct-particles" className="fixed inset-0 pointer-events-none z-0" />;
+    return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0" />;
 }

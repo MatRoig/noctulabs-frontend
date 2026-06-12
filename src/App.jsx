@@ -15,10 +15,13 @@ import Footer from './components/Footer';
 function App() {
   const { t, lang, setLang } = useTranslation();
   const [loading, setLoading] = useState(true);
+  const [curtainClosing, setCurtainClosing] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setLoading(false);
+      setCurtainClosing(true);
+      const removeTimer = setTimeout(() => setLoading(false), 700);
+      return () => clearTimeout(removeTimer);
     }, 1200);
     return () => clearTimeout(timer);
   }, []);
@@ -27,15 +30,14 @@ function App() {
     <div className="min-h-screen bg-noct-bg text-white font-sans selection:bg-noct-neon selection:text-black relative">
       <ParticlesBackground />
 
-      {/* CORTINA - Corregimos el manejo de visibilidad para no bloquear el clic */}
       {loading && (
-        <div className="fixed inset-0 z-[9999] flex flex-col transition-opacity duration-500">
-          <div className="w-full h-1/2 bg-[#060413] flex items-end justify-center overflow-hidden transition-transform duration-700 ease-in-out" style={{ transform: loading ? 'translateY(0)' : 'translateY(-100%)' }}>
+        <div className="fixed inset-0 z-[9999] flex flex-col">
+          <div className="w-full h-1/2 bg-[#060413] flex items-end justify-center overflow-hidden transition-transform duration-700 ease-in-out" style={{ transform: curtainClosing ? 'translateY(-100%)' : 'translateY(0)' }}>
             <div className="h-0 flex items-center justify-center relative bottom-0">
               <img src="/logo-noctulabs.png.jpeg" alt="Logo" className="h-32 sm:h-48 animate-owl-drop" style={{ transform: 'translateY(50%)' }} />
             </div>
           </div>
-          <div className="w-full h-1/2 bg-[#060413] flex items-start justify-center overflow-hidden transition-transform duration-700 ease-in-out" style={{ transform: loading ? 'translateY(0)' : 'translateY(100%)' }}>
+          <div className="w-full h-1/2 bg-[#060413] flex items-start justify-center overflow-hidden transition-transform duration-700 ease-in-out" style={{ transform: curtainClosing ? 'translateY(100%)' : 'translateY(0)' }}>
             <div className="h-0 flex items-center justify-center relative top-0">
               <img src="/logo-noctulabs.png.jpeg" alt="Logo" className="h-32 sm:h-48 animate-owl-drop" style={{ transform: 'translateY(-50%)' }} />
             </div>
@@ -58,7 +60,7 @@ function App() {
       </main>
 
       {/* TERMINAL   FLOTANTE */}
-      <Terminal t={t} lang={lang} />
+      <Terminal t={t} />
     </div>
   );
 }

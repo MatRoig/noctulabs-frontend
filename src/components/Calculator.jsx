@@ -1,25 +1,28 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
+
+const BASE_WEEKS = { vitrina: 2, ecommerce: 4, customApp: 6, otro: 0 };
+const PAYMENTS_EXTRA = 1;
+const AUTH_EXTRA = 2;
+const MAX_TOTAL_WEEKS = Math.max(...Object.values(BASE_WEEKS)) + PAYMENTS_EXTRA + AUTH_EXTRA;
 
 export default function Calculator({ t }) {
     const [projectType, setProjectType] = useState('vitrina');
     const [includePayments, setIncludePayments] = useState(false);
     const [includeAuth, setIncludeAuth] = useState(false);
 
-    const calculateEstimate = () => {
-        if (projectType === 'otro') return 'A evaluar';
+    const isCustom = projectType === 'otro';
 
-        let baseWeeks = 2;
-        if (projectType === 'ecommerce') baseWeeks = 4;
-        if (projectType === 'customApp') baseWeeks = 6;
-        
-        if (includePayments) baseWeeks += 1;
-        if (includeAuth) baseWeeks += 2;
-        
-        return `~ ${baseWeeks} `;
-    };
+    const estimateWeeks = useMemo(() => {
+        if (isCustom) return null;
+        let weeks = BASE_WEEKS[projectType];
+        if (includePayments) weeks += PAYMENTS_EXTRA;
+        if (includeAuth) weeks += AUTH_EXTRA;
+        return weeks;
+    }, [projectType, includePayments, includeAuth, isCustom]);
 
-    const estimateResult = calculateEstimate();
-    const isCustom = estimateResult === 'A evaluar';
+    const progressPercent = isCustom
+        ? 100
+        : Math.min((estimateWeeks / MAX_TOTAL_WEEKS) * 100, 100);
 
     return (
         // scroll-mt-32 asegura que al navegar desde el Navbar no quede oculto
@@ -40,7 +43,7 @@ export default function Calculator({ t }) {
                             <option value="vitrina">{t.calc.opt1}</option>
                             <option value="ecommerce">{t.calc.opt2}</option>
                             <option value="customApp">{t.calc.opt3}</option>
-                            <option value="otro">Otro</option>
+                            <option value="otro">{t.calc.opt4}</option>
                         </select>
                     </div>
 
@@ -64,7 +67,7 @@ export default function Calculator({ t }) {
                         <p className="text-gray-400 text-sm">{t.calc.est}</p>
                         
                         <h4 className={`my-4 font-syne font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-300 ${isCustom ? 'text-3xl sm:text-4xl' : 'text-6xl sm:text-7xl'}`}>
-                            {estimateResult}
+                            {isCustom ? 'A evaluar' : `~ ${estimateWeeks}`}
                             {!isCustom && <span className="text-xl font-sans text-noct-neon ml-2">{t.calc.weeks}</span>}
                         </h4>
                     </div>
@@ -73,7 +76,7 @@ export default function Calculator({ t }) {
                         <div className="w-full bg-gray-900 h-2 rounded-full overflow-hidden">
                             <div 
                                 className="bg-gradient-to-r from-noct-purple to-noct-neon h-full transition-all duration-500" 
-                                style={{ width: isCustom ? '100%' : `${(parseInt(estimateResult.replace('~ ', '')) / 9) * 100}%` }} 
+                                style={{ width: `${progressPercent}%` }} 
                             />
                         </div>
                         <p className="text-xs text-gray-500 leading-relaxed">{t.calc.footer}</p>
